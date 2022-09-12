@@ -25,10 +25,6 @@ Tag.belongsToMany(Product,{
   through: ProductTag
 });
 
-await Product.sync();
-await Tag.sync();
-await ProductTag.sync();
-
 module.exports = {
   Product,
   Category,

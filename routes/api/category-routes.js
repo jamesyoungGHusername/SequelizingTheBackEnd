@@ -8,13 +8,6 @@ router.get('/', async (req, res) => {
   try{
     const categories = await Category.findAll({
       include:[{model:Product}],
-      attributes: {
-        include:[
-          [
-            sequelize.literal('(SELECT * FROM product WHERE product.category_id = category.id'),'products',
-          ],
-        ],
-      },
     });
     res.status(200).json(categories);
   } catch (err){
@@ -24,15 +17,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try{
-    const categories = await Category.findByPk({
+    const categories = await Category.findByPk(req.params.id,{
       include:[{model:Product}],
-      attributes: {
-        include:[
-          [
-            sequelize.literal('(SELECT * FROM product WHERE product.category_id = category.id'),'products',
-          ],
-        ],
-      },
     });
 
     if(!categories){
@@ -60,8 +46,9 @@ router.put('/:id', async (req, res) => {
   try{
     const category = Category.update(
       {category_name:req.body.category_name},
+      {where: {id:req.params.id}}
     );
-    res.status(200).json(category);
+    res.status(200).json({message:"updated"});
   }catch (err){
     res.status(500).json(err);
   }
@@ -72,7 +59,7 @@ router.delete('/:id', async (req, res) => {
   try{
     const category = await Category.destroy({
       where:{
-        id: req.params
+        id: req.params.id
       }
     });
     if(!category){
