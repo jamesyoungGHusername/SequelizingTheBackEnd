@@ -29,15 +29,13 @@
 
   # Installation
 
-  It can be downloaded from GitHub, and run using the terminal. Uses node.js, npm, Inquirer, and mysql2
+  It can be downloaded from GitHub, and run using the terminal. Requires mysql, and insomnia (or some equivalent) to make calls to the api.
 
-  [A demo can be found on youtube here](https://youtu.be/N_TIx7S1leI)
-
-  
+  [A demo can be found on youtube here](https://youtu.be/To8HNGwDAYg)
 
   # Usage 
 
-The app displays a main menu, and allows the user to select from several options that allow to view or add to sections of the database. They can save or view employees, roles, and departments. Many of the prompt functions take exit points as params, allowing the user to, for example, create a new role midway through creating a new employee, and when they're done they'll be returned to right where they left off while creating the employee without losing any progress.
+This app has no front end. It's a back end for a hypothetical site that sells various items. If the user wishes to test it, the must start the server using node, and then they can make calls to the api to view, create, update, or delete various things in the database.
   
   # License 
 
